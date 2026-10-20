@@ -100,13 +100,15 @@ public class Consumable extends Item {
     public int requiredNumberOfValues()
     {
         // What is the correct return value?
-        return -1;
+        return 3;
     }
 
     @Override
     public void fromTokens(String[] tokens)
     {
         this.setName(tokens[0]);
+        this.setEffect(tokens[1]);
+        this.setNumberOfUses(Integer.parseInt(tokens[2]));
 
         // Complete this method.
     }
@@ -115,11 +117,14 @@ public class Consumable extends Item {
      * Clone--i.e., copy--this Consumable Item.
      */
     @Override
-    public Item clone()
+    public Consumable clone()
     {
         Consumable cpy = new Consumable();
         
         // Add the missing logic
+        cpy.name = this.name;
+        cpy.effect = this.effect;
+        cpy.uses = this.uses;
 
         return cpy;
     }
@@ -153,7 +158,7 @@ public class Consumable extends Item {
     public int hashCode()
     {
         // Replace the return
-        return -1;
+        return this.name.hashCode() + this.effect.hashCode();
     }
 
     /**
@@ -163,6 +168,6 @@ public class Consumable extends Item {
     public String toString()
     {
         // Use String.format and the provided FMT_STR
-        return "  Not Implemented";
+        return String.format(FMT_STR, name, effect, uses);
     }
 }
